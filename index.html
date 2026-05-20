@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <title>ZH megoldás</title>
+
+    <style>
+
+        body{
+            background-color: #222;
+            color: white;
+            font-family: Arial;
+            padding: 20px;
+        }
+
+        h1{
+            color: orange;
+            margin-top: 50px;
+        }
+
+        pre{
+            background-color: black;
+            padding: 20px;
+            border-radius: 10px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<h1>HTML - index.html</h1>
+
+<pre>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="hu"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Termék rendelés&lt;/title&gt;
+    &lt;link rel="stylesheet" href="style.css"&gt;
+    &lt;script src="script.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+    &lt;p&gt;&lt;strong&gt;Név:&lt;/strong&gt; Géza Flámis&lt;/p&gt;
+    &lt;p&gt;&lt;strong&gt;Neptun:&lt;/strong&gt; NGEK9N&lt;/p&gt;
+    
+    &lt;div class="container"&gt;
+
+        &lt;h1&gt;Termékrendelés&lt;/h1&gt;
+
+        &lt;h2&gt;Termék - Laptop - 01&lt;/h2&gt;
+
+        &lt;div class="tartalom"&gt;
+
+&lt;form action="feldolgoz.php" method="post" onsubmit="return ellenorzes()"&gt;
+
+    &lt;div class="sor"&gt;
+        &lt;label for="nev"&gt;Név:&lt;/label&gt;
+        &lt;input type="text" id="nev" name="nev"&gt;
+    &lt;/div&gt;
+
+    &lt;div class="sor"&gt;
+        &lt;label for="email"&gt;E-mail:&lt;/label&gt;
+        &lt;input type="text" id="email" name="email"&gt;
+    &lt;/div&gt;
+
+    &lt;div class="sor"&gt;
+        &lt;label for="darab"&gt;Darab:&lt;/label&gt;
+        &lt;input type="text" id="darab" name="darab"&gt;
+    &lt;/div&gt;
+
+    &lt;div class="sor"&gt;
+        &lt;label for="nap"&gt;Nap:&lt;/label&gt;
+
+        &lt;select id="nap" name="nap"&gt;
+            &lt;option value=""&gt;Válasszon!&lt;/option&gt;
+            &lt;option value="hétfő"&gt;hétfő&lt;/option&gt;
+            &lt;option value="kedd"&gt;kedd&lt;/option&gt;
+            &lt;option value="szerda"&gt;szerda&lt;/option&gt;
+            &lt;option value="csütörtök"&gt;csütörtök&lt;/option&gt;
+            &lt;option value="péntek"&gt;péntek&lt;/option&gt;
+        &lt;/select&gt;
+
+        &lt;button type="submit"&gt;Küldés&lt;/button&gt;
+    &lt;/div&gt;
+
+&lt;/form&gt;
+
+            &lt;img src="image/kep.jpg" alt="Laptop"&gt;
+
+        &lt;/div&gt;
+
+    &lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+
+<h1>CSS - style.css</h1>
+
+<pre>
+body {
+    background-color: rgb(228, 185, 91);
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    font-size: 50px;
+    margin-bottom: 40px;
+}
+
+h2 {
+    margin-bottom: 40px;
+}
+
+.tartalom {
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+}
+
+.sor {
+    margin-bottom: 30px;
+}
+
+label {
+    display: inline-block;
+    width: 120px;
+    font-size: 28px;
+}
+
+form {
+    width: 350px;
+}
+
+input,
+select {
+    width: 200px;
+    padding: 5px;
+    font-size: 20px;
+}
+
+#darab {
+    width: 70px;
+}
+
+button {
+    padding: 8px 15px;
+    cursor: pointer;
+    margin-left: 20px;
+    font-size: 18px;
+}
+
+img {
+    width: 350px;
+}
+
+.hiba {
+    background-color: #f99;
+}
+</pre>
+
+<h1>JavaScript - script.js</h1>
+
+<pre>
+function ellenorzes() {
+
+  let jo = true;
+
+  let nev = document.getElementById('nev');
+  let email = document.getElementById('email');
+  let darab = document.getElementById('darab');
+  let nap = document.getElementById('nap');
+
+  let checkPattern =
+    /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+
+  nev.classList.remove('hiba');
+  email.classList.remove('hiba');
+  darab.classList.remove('hiba');
+  nap.classList.remove('hiba');
+
+  if (nev.value == '' || nev.value.length < 8 || nev.value.length > 30) {
+    nev.classList.add('hiba');
+    jo = false;
+  }
+
+  if (email.value == '' || !checkPattern.test(email.value)) {
+    email.classList.add('hiba');
+    jo = false;
+  }
+
+  if (
+    darab.value == '' ||
+    isNaN(darab.value) ||
+    darab.value < 1 ||
+    darab.value > 10
+  ) {
+    darab.classList.add('hiba');
+    jo = false;
+  }
+
+  if (nap.value == '') {
+    nap.classList.add('hiba');
+    jo = false;
+  }
+
+  return jo;
+}
+</pre>
+
+<h1>PHP - feldolgoz.php</h1>
+
+<pre>
+&lt;?php
+
+$nev = $_POST["nev"];
+$email = $_POST["email"];
+$darab = $_POST["darab"];
+$nap = $_POST["nap"];
+
+$jo = true;
+
+$napok = ["hétfő", "kedd", "szerda", "csütörtök", "péntek"];
+
+echo "&lt;h1&gt;Ellenőrzés&lt;/h1&gt;";
+
+/* NÉV */
+
+if ($nev != "" && strlen($nev) >= 8 && strlen($nev) <= 30) {
+    echo "Név: $nev - Helyes&lt;br&gt;";
+} else {
+    echo "Név: $nev - Hibás!&lt;br&gt;";
+    $jo = false;
+}
+
+/* EMAIL */
+
+if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    echo "E-mail: $email - Helyes&lt;br&gt;";
+} else {
+    echo "E-mail: $email - Hibás!&lt;br&gt;";
+    $jo = false;
+}
+
+/* DARAB */
+
+if (is_numeric($darab) && $darab >= 1 && $darab <= 10) {
+    echo "Darab: $darab - Helyes&lt;br&gt;";
+} else {
+    echo "Darab: $darab - Hibás!&lt;br&gt;";
+    $jo = false;
+}
+
+/* NAP */
+
+if (in_array($nap, $napok)) {
+    echo "Nap: $nap - Helyes&lt;br&gt;";
+} else {
+    echo "Nap: $nap - Hibás!&lt;br&gt;";
+    $jo = false;
+}
+
+/* ADATBÁZIS */
+
+if ($jo) {
+
+    $conn = new mysqli("localhost", "root", "", "aruhaz");
+
+    if ($conn-&gt;connect_error) {
+        die("Hiba az adatbázis kapcsolatnál!");
+    }
+
+    $sql = "INSERT INTO rendeles (nev, email, darab, nap)
+            VALUES ('$nev', '$email', '$darab', '$nap')";
+
+    if ($conn-&gt;query($sql) === TRUE) {
+        echo "&lt;br&gt;Sikeres mentés!";
+    } else {
+        echo "&lt;br&gt;Hiba mentés közben!";
+    }
+
+    $conn-&gt;close();
+}
+
+?&gt;
+</pre>
+
+</body>
+</html>
