@@ -1,0 +1,61 @@
+body {
+    background-color: rgb(228, 185, 91);
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    font-size: 50px;
+    margin-bottom: 40px;
+}
+
+h2 {
+    margin-bottom: 40px;
+}
+
+.tartalom {
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+}
+
+.sor {
+    margin-bottom: 30px;
+}
+
+label {
+    display: inline-block;
+    width: 120px;
+    font-size: 28px;
+}
+
+form {
+    width: 350px;
+}
+
+input,
+select {
+    width: 200px;
+    padding: 5px;
+    font-size: 20px;
+}
+
+#darab {
+    width: 70px;
+}
+
+button {
+    padding: 8px 15px;
+    cursor: pointer;
+    margin-left: 20px;
+    font-size: 18px;
+}
+
+img {
+    width: 350px;
+}
+
+.hiba {
+    background-color: #f99;
+}

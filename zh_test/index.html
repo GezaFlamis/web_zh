@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <title>Termék rendelés</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+<body>
+    <p><strong>Név:</strong> Saját Név</p>
+    <p><strong>Neptun:</strong> ABC123</p>
+
+    <div class="container">
+
+        <h1>Termékrendelés</h1>
+
+        <h2>Termék - Laptop - 01</h2>
+
+        <div class="tartalom">
+
+<form action="feldolgoz.php" method="post" onsubmit="return ellenorzes()">
+
+    <div class="sor">
+        <label for="nev">Név:</label>
+        <input type="text" id="nev" name="nev">
+    </div>
+
+    <div class="sor">
+        <label for="email">E-mail:</label>
+        <input type="text" id="email" name="email">
+    </div>
+
+    <div class="sor">
+        <label for="darab">Darab:</label>
+        <input type="text" id="darab" name="darab">
+    </div>
+
+    <div class="sor">
+        <label for="nap">Nap:</label>
+
+        <select id="nap" name="nap">
+            <option value="">Válasszon!</option>
+            <option value="hétfő">hétfő</option>
+            <option value="kedd">kedd</option>
+            <option value="szerda">szerda</option>
+            <option value="csütörtök">csütörtök</option>
+            <option value="péntek">péntek</option>
+        </select>
+
+        <button type="submit">Küldés</button>
+    </div>
+
+</form>
+            <img src="image/kep.jpg" alt="Laptop">
+
+        </div>
+
+    </div>
+
+</body>
+</html>
